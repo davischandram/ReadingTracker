@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
-import Home from "./Home";
+import Home from "./containers/Home";
 import BooksComponent from "./components/BookTracking/BooksComponent";
 import AuthorsComponent from "./components/BookTracking/AuthorsComponent";
 import PublishersComponent from "./components/BookTracking/PublishersComponent";
@@ -75,10 +75,10 @@ function App() {
               <Route exact path={"/booksRead"}>
                 <BooksComponent/>
               </Route>
-              <Route exact path={"/booksByAuthors"}>
+              <Route exact path={"/booksByAuthor"}>
                 <AuthorsComponent/>
               </Route>
-              <Route exact path={"/booksByPublishers"}>
+              <Route exact path={"/booksByPublisher"}>
                 <PublishersComponent/>
               </Route>
               <Route exact path={"/trackingInfo"}>
