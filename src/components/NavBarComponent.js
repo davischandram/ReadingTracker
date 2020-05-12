@@ -1,42 +1,84 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {FormControl, Navbar, NavbarBrand, NavDropdown} from "react-bootstrap";
-import NavbarToggle from "react-bootstrap/NavbarToggle";
-import NavbarCollapse from "react-bootstrap/NavbarCollapse";
-import Nav from "react-bootstrap/Nav";
 import {Link} from "react-router-dom";
 
 class NavBarComponent extends React.Component {
+    state = {
+        activeBooks: false,
+        activeSeries: false,
+        activeStats: false,
+        activeHauled: false,
+        activeArc: false
+    };
+
+    activate = (change) => {
+        console.log(change);
+        this.setState({
+            activeBooks: change==="books" ? true:false,
+            activeSeries: change==="series" ? true:false,
+            activeStats: change==="stats" ? true:false,
+            activeHauled: change==="hauled" ? true:false,
+            activeArc: change==="arc" ? true:false
+        })
+    };
+
+    // need to find a way to update based on the path instead of selection
+
     render() {
         return (
-            <Navbar bg={"dark"} expand={"lg"}>
-                <NavbarBrand href={"/"}>Reading Tracker</NavbarBrand>
-                <NavbarToggle aria-controls={"basic-navbar-nav"}/>
-                <NavbarCollapse id={"basic-navbar-nav"}>
-                    <Nav classname={"mr-auto"}>
-                        <NavDropdown id={"basic-nav-dropdown"} title={"Books"}>
-                            <NavDropdown.Item href={"/booksRead"}>Books Read</NavDropdown.Item>
-                            <NavDropdown.Item href={"/booksByAuthor"}>Books by Author</NavDropdown.Item>
-                            <NavDropdown.Item href={"/booksByPublishet"}>Books by Publisher</NavDropdown.Item>
-                            <NavDropdown.Divider/>
-                            <NavDropdown.Item href={"/trackingInfo"}>Tracking Info</NavDropdown.Item>
-                        </NavDropdown>
-                        <Nav.Link href={"/series"}>Series</Nav.Link>
-                        <Nav.Link href={"/stats"}>Stats</Nav.Link>
-                        <Nav.Link href={"#"}>Books Hauled</Nav.Link>
-                        <Nav.Link href={"#"}>ARC Tracker</Nav.Link>
-                    </Nav>
-                    <Form inline>
-                        <FormControl type={"text"} placeholder={"Search for Books"} classname={"mr-sm-2"}/>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a className="navbar-brand" href="/">Reading Tracker</a>
+
+                <div className="collapse navbar-collapse">
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item dropdown">
+                            <a className={`nav-link dropdown-toggle ${this.state.activeBooks ? 'active':''}`}
+                               href="/booksRead"
+                               onClick={() => this.activate("books")}
+                               id="navbarDropdown"
+                               role="button"
+                               data-toggle="dropdown"
+                               aria-haspopup="true" >
+                                Books
+                            </a>
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a className="dropdown-item" href="/booksRead">Books Read</a>
+                                <a className="dropdown-item" href="/booksByAuthor">Books by Authors</a>
+                                <a className="dropdown-item" href="/booksByPublisher">Books by Publishers</a>
+                                <div className="dropdown-divider"></div>
+                                <a className="dropdown-item" href="/trackingInfo">Tracking Info</a>
+                            </div>
+                        </li>
+                        <li className="nav-item">
+                            <a className={`nav-link ${this.state.activeSeries ? 'active':''}`}
+                               href="/series"
+                               onClick={() => this.activate("series")}>Series</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className={`nav-link ${this.state.activeStats ? 'active':''}`}
+                               href="/stats"
+                               onClick={() => this.activate("stats")}>Stats</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className={`nav-link ${this.state.activeHauled ? 'active':''}`}
+                               href="/hauled"
+                               onClick={() => this.activate("hauled")}>Books Hauled</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className={`nav-link disabled ${this.state.activeArc ? 'active':''}`}
+                               href="/arc"
+                               onClick={() => this.activate("arc")}>ARC Tracker</a>
+                        </li>
+                    </ul>
+                    <form className="form-inline my-2 my-lg-0">
+                        <input className="form-control mr-sm-2" type="search" placeholder="Search for Books"
+                               aria-label="Search"/>
                         <Link to={"/search"}>
-                            <button className={"btn btn-outline-success my-2 my-sm-0"}
-                                    type={"submit"}>
-                                Search
-                            </button>
+                            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </Link>
-                    </Form>
-                </NavbarCollapse>
-            </Navbar>
+                    </form>
+                </div>
+            </nav>
         )
     }
 }

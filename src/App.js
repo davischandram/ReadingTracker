@@ -2,8 +2,7 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
@@ -17,6 +16,9 @@ import SearchDetailsComponent from "./components/Search/SearchDetailsComponent";
 import ProfileComponent from "./components/ProfileComponent";
 import SeriesComponent from "./components/SeriesComponent";
 import StatsComponent from "./components/StatsComponent";
+import NavBarComponent from "./components/NavBarComponent";
+import BooksHauledComponent from "./components/BooksHauledComponent";
+import ArcComponent from "./components/ArcComponent";
 
 const state = {};
 const reducers = combineReducers({
@@ -30,46 +32,7 @@ function App() {
       <Provider store={store}>
         <Router>
           <div>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-              <a className="navbar-brand" href="/">Reading Tracker</a>
-
-              <div className="collapse navbar-collapse">
-                <ul className="navbar-nav mr-auto">
-                  <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="/booksRead" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" >
-                      Books
-                    </a>
-                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a className="dropdown-item" href="/booksRead">Books Read</a>
-                      <a className="dropdown-item" href="/booksByAuthors">Books by Authors</a>
-                      <a className="dropdown-item" href="/booksByPublishers">Books by Publishers</a>
-                      <div className="dropdown-divider"></div>
-                      <a className="dropdown-item" href="/trackingInfo">Tracking Info</a>
-                    </div>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="/series">Series</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="/stats">Stats</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">Books Hauled</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link disabled" href="#">ARC Tracker</a>
-                  </li>
-                </ul>
-                <form className="form-inline my-2 my-lg-0">
-                  <input className="form-control mr-sm-2" type="search" placeholder="Search for Books"
-                         aria-label="Search"/>
-                  <Link to={"/search"}>
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                  </Link>
-                </form>
-              </div>
-            </nav>
+            <NavBarComponent/>
 
             <Switch>
               <Route exact path={"/booksRead"}>
@@ -89,6 +52,12 @@ function App() {
               </Route>
               <Route exact path={"/stats"}>
                 <StatsComponent/>
+              </Route>
+              <Route exact path={"/hauled"}>
+                  <BooksHauledComponent/>
+              </Route>
+              <Route exact path={"/arc"}>
+                  <ArcComponent/>
               </Route>
               <Route
                   exact path={["/search",
