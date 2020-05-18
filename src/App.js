@@ -17,7 +17,7 @@ import ProfileComponent from "./components/ProfileComponent";
 import SeriesComponent from "./components/SeriesComponent";
 import StatsComponent from "./components/StatsComponent";
 import NavBarComponent from "./components/NavBarComponent";
-import BooksHauledComponent from "./components/BooksHauledComponent";
+import BooksHauledComponent from "./components/BooksHauled/BooksHauledComponent";
 import ArcComponent from "./components/ArcComponent";
 
 const state = {};

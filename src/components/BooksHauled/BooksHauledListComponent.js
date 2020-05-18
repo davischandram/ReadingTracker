@@ -1,33 +1,34 @@
 import React from "react";
+import './BooksHauled.css';
 
-const BooksHauledComponent = () =>
+const BooksHauledListComponent = () =>
     <div className={"container-fluid"}>
-        <div className={"row"} id={"hauledHeader"}>
+        <div className={"row flex-nowrap"}>
             <div className={"col cmd-bh-title"}>
-                <h3>Title</h3>
+               Title
             </div>
             <div className={"col cmd-bh-author"}>
-                <h3>Author</h3>
+                Author
             </div>
             <div className={"col cmd-bh-release"}>
-                <h3>Release Year</h3>
+                Release Year
             </div>
             <div className={"col cmd-bh-format"}>
-                <h3>Format</h3>
+                Format
             </div>
             <div className={"col cmd-bh-source"}>
-                <h3>Source</h3>
+                Source
             </div>
             <div className={"col cmd-bh-price"}>
-                <h3>Price</h3>
+                Price
             </div>
             <div className={"col cmd-bh-date"}>
-                <h3>Date Received</h3>
+                Date Received
             </div>
             <div className={"col cmd-bh-read"}>
-                <h3>Read</h3>
+                Read
             </div>
         </div>
     </div>;
 
-export default BooksHauledComponent
+export default BooksHauledListComponent
