@@ -20,11 +20,13 @@ import NavBarComponent from "./components/NavBarComponent";
 import BooksHauledListComponent from "./components/BooksHauled/BooksHauledListComponent";
 import ArcComponent from "./components/ArcComponent";
 import booksHauledReducer from "./reducers/booksHauledReducer";
+import seriesReducer from "./reducers/seriesReducer";
 
 const state = {};
 const reducers = combineReducers({
     reducer: state,
-    booksHauled: booksHauledReducer
+    booksHauled: booksHauledReducer,
+    series: seriesReducer
 });
 
 const store = createStore(reducers);
