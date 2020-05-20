@@ -1,6 +1,6 @@
 import React from "react";
 
-const SeriesComponent = () =>
+const SeriesListComponent = () =>
     <div className={"container-fluid"}>
         <div className={"row"} id={"seriesHeader"}>
             <div className={"col cmd-si-title"}>
@@ -21,4 +21,4 @@ const SeriesComponent = () =>
         </div>
     </div>;
 
-export default SeriesComponent
+export default SeriesListComponent
