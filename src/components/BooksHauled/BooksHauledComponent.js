@@ -1,7 +1,7 @@
 import React from "react";
 import './BooksHauled.css';
 
-const BooksHauledListComponent = () =>
+const BooksHauledComponent = () =>
     <div className={"container-fluid"}>
         <div className={"row flex-nowrap"}>
             <div className={"col cmd-bh-title"}>
@@ -31,4 +31,4 @@ const BooksHauledListComponent = () =>
         </div>
     </div>;
 
-export default BooksHauledListComponent
+export default BooksHauledComponent

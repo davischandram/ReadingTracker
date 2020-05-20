@@ -14,15 +14,17 @@ import TrackingComponent from "./components/BookTracking/TrackingComponent";
 import SearchComponent from "./components/Search/SearchComponent";
 import SearchDetailsComponent from "./components/Search/SearchDetailsComponent";
 import ProfileComponent from "./components/ProfileComponent";
-import SeriesComponent from "./components/SeriesComponent";
+import SeriesListComponent from "./components/Series/SeriesListComponent";
 import StatsComponent from "./components/StatsComponent";
 import NavBarComponent from "./components/NavBarComponent";
-import BooksHauledComponent from "./components/BooksHauled/BooksHauledComponent";
+import BooksHauledListComponent from "./components/BooksHauled/BooksHauledListComponent";
 import ArcComponent from "./components/ArcComponent";
+import booksHauledReducer from "./reducers/booksHauledReducer";
 
 const state = {};
 const reducers = combineReducers({
-  reducer: state
+    reducer: state,
+    booksHauled: booksHauledReducer
 });
 
 const store = createStore(reducers);
@@ -35,30 +37,56 @@ function App() {
             <NavBarComponent/>
 
             <Switch>
-              <Route exact path={"/booksRead"}>
-                <BooksComponent/>
-              </Route>
-              <Route exact path={"/booksByAuthor"}>
-                <AuthorsComponent/>
-              </Route>
-              <Route exact path={"/booksByPublisher"}>
-                <PublishersComponent/>
-              </Route>
-              <Route exact path={"/trackingInfo"}>
-                <TrackingComponent/>
-              </Route>
-              <Route exact path={"/series"}>
-                <SeriesComponent/>
-              </Route>
-              <Route exact path={"/stats"}>
-                <StatsComponent/>
-              </Route>
-              <Route exact path={"/hauled"}>
-                  <BooksHauledComponent/>
-              </Route>
-              <Route exact path={"/arc"}>
-                  <ArcComponent/>
-              </Route>
+              <Route
+                  exact path={"/booksRead"}
+                  render={(props) =>
+                <BooksComponent
+                    {...props}
+                />
+                  }/>
+              <Route
+                  exact path={"/booksByAuthor"}
+                  render={(props) =>
+                      <AuthorsComponent
+                          {...props}
+                      />
+                  }/>
+              <Route exact path={"/booksByPublisher"}
+                     render={(props) =>
+                <PublishersComponent
+                    {...props}
+                />
+                  }/>
+              <Route exact path={"/trackingInfo"}
+                     render={(props) =>
+                <TrackingComponent
+                    {...props}
+                />
+                  }/>
+              <Route exact path={"/series"}
+                     render={(props) =>
+                <SeriesListComponent
+                    {...props}
+                />
+                  }/>
+              <Route exact path={"/stats"}
+                     render={(props) =>
+                <StatsComponent
+                    {...props}
+                />
+                  }/>
+              <Route exact path={"/hauled"}
+                     render={(props) =>
+                  <BooksHauledListComponent
+                      {...props}
+                  />
+                  }/>
+              <Route exact path={"/arc"}
+                     render={(props) =>
+                  <ArcComponent
+                      {...props}
+                  />
+                  }/>
               <Route
                   exact path={["/search",
                                 "/search/:criteria"]}
